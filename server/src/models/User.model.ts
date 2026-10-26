@@ -2,7 +2,6 @@ import { Schema, model, Document } from "mongoose";
 
 export enum UserRole {
   USER = "user",
-  ADMIN = "admin",
 }
 
 export enum Gender {

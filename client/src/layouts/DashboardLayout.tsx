@@ -1,11 +1,10 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useOutletContext } from "react-router-dom";
+import type { CurrentUser } from "../components/ProtectedRoute";
 
 const DashboardLayout = () => {
-  return (
-    <div>
-      <Outlet />
-    </div>
-  );
+  const context = useOutletContext<{ user: CurrentUser }>();
+
+  return <Outlet context={context} />;
 };
 
 export default DashboardLayout;

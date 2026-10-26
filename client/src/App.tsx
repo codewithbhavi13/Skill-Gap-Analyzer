@@ -9,6 +9,8 @@ import RegisterPage from "./pages/Register/RegisterPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
 
+import ProtectedRoute from "./components/ProtectedRoute";
+
 function App() {
   return (
     <Routes>
@@ -18,8 +20,10 @@ function App() {
         <Route path="/register" element={<RegisterPage />} />
       </Route>
 
-      <Route element={<DashboardLayout />}>
-        <Route path="/dashboard" element={<DashboardPage />} />
+      <Route element={<ProtectedRoute />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<DashboardPage />} />
+        </Route>
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />

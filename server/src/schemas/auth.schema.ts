@@ -15,7 +15,6 @@ export const registerSchema = z.object({
 
  password: z
   .string()
-  .trim()
   .min(8, "Password must be at least 8 characters long")
   .max(20, "Password cannot exceed 20 characters")
   .regex(
@@ -25,7 +24,6 @@ export const registerSchema = z.object({
 
   confirmPassword: z
   .string()
-  .trim()
   .min(1, "Confirm Password is required"),
 
   dateOfBirth: z
@@ -56,3 +54,15 @@ export const registerSchema = z.object({
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;
+
+
+export const loginSchema = z.object({
+  email: z
+    .email("Please enter a valid email address")
+    .trim()
+    .toLowerCase(),
+
+  password: z.string().min(1, "Password is required"),
+});
+
+export type LoginInput = z.infer<typeof loginSchema>;
