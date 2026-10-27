@@ -1,4 +1,3 @@
-
 import type { Request, Response, NextFunction } from "express";
 import { createJobDescriptionSchema } from "../schemas/jobDescription.schema.js";
 import { createJobDescription, getAllJobDescriptions,extractSkillsFromJobDescription} from "../services/jobDescription.service.js";
