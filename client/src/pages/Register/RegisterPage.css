@@ -1,0 +1,245 @@
+
+@reference "../../styles/globals.css";
+
+.register-page {
+  @apply min-h-screen bg-[#f8f7ff] p-3 sm:p-5 lg:p-8;
+}
+
+.register-layout {
+  @apply mx-auto grid min-h-[calc(100vh-1.5rem)] max-w-7xl
+    overflow-hidden rounded-[2rem] bg-white
+    shadow-2xl shadow-violet-200/50
+    sm:min-h-[calc(100vh-2.5rem)] lg:grid-cols-2;
+}
+
+.register-brand {
+  @apply relative flex min-h-[300px] flex-col justify-between
+    overflow-hidden bg-gradient-to-br from-violet-700
+    via-purple-700 to-indigo-900 p-7 text-white
+    sm:p-10 lg:min-h-full lg:p-14;
+}
+
+.register-glow {
+  @apply pointer-events-none absolute rounded-full blur-3xl;
+}
+
+.register-glow-top {
+  @apply -right-20 -top-20 h-64 w-64 bg-fuchsia-400/30;
+}
+
+.register-glow-bottom {
+  @apply -bottom-20 -left-16 h-72 w-72 bg-cyan-400/20;
+}
+
+.register-brand-content {
+  @apply relative z-10;
+}
+
+.register-logo {
+  @apply inline-flex items-center gap-3 rounded-xl
+    focus:outline-none focus:ring-2 focus:ring-white;
+}
+
+.register-logo-icon {
+  @apply flex h-11 w-11 items-center justify-center rounded-2xl
+    bg-white text-xl font-black text-violet-700 shadow-lg;
+}
+
+.register-logo-text {
+  @apply text-lg font-bold tracking-tight;
+}
+
+.register-logo-accent {
+  @apply text-fuchsia-300;
+}
+
+.register-intro {
+  @apply mt-10 max-w-lg sm:mt-14 lg:mt-20;
+}
+
+.register-eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full
+    border border-white/20 bg-white/10 px-4 py-2
+    text-xs font-semibold tracking-wide text-violet-100
+    backdrop-blur-sm;
+}
+
+.register-status-dot {
+  @apply h-2 w-2 rounded-full bg-emerald-300;
+}
+
+.register-title {
+  @apply mt-6 text-4xl font-black leading-tight tracking-tight
+    sm:text-5xl lg:text-6xl;
+}
+
+.register-title-accent {
+  @apply block text-fuchsia-300;
+}
+
+.register-description {
+  @apply mt-5 max-w-md text-sm leading-7 text-violet-100 sm:text-base;
+}
+
+.register-feature-grid {
+  @apply relative z-10 mt-10 grid max-w-lg grid-cols-2 gap-3 sm:gap-4;
+}
+
+.register-feature {
+  @apply rounded-2xl border border-white/15 bg-white/10
+    p-4 backdrop-blur-md sm:p-5;
+}
+
+.register-feature-icon {
+  @apply flex h-10 w-10 items-center justify-center
+    rounded-xl bg-pink-400/20 text-xl;
+}
+
+.register-feature-icon-cyan {
+  @apply bg-cyan-300/20;
+}
+
+.register-feature-title {
+  @apply mt-4 text-sm font-bold;
+}
+
+.register-feature-description {
+  @apply mt-1 text-xs leading-5 text-violet-100;
+}
+
+.register-brand-footer {
+  @apply relative z-10 mt-8 hidden text-xs text-violet-200 sm:block;
+}
+
+.register-form-panel {
+  @apply flex items-center justify-center px-6 py-10
+    sm:px-12 sm:py-14 lg:px-14;
+}
+
+.register-form-content {
+  @apply w-full max-w-md;
+}
+
+.register-heading {
+  @apply mb-7;
+}
+
+.register-badge {
+  @apply inline-flex rounded-full bg-fuchsia-50 px-3 py-1.5
+    text-xs font-bold uppercase tracking-wider text-fuchsia-700;
+}
+
+.register-form-title {
+  @apply mt-5 text-3xl font-black tracking-tight text-slate-900
+    sm:text-4xl;
+}
+
+.register-form-title-accent {
+  @apply block text-violet-700;
+}
+
+.register-subtitle {
+  @apply mt-3 text-sm leading-6 text-slate-500;
+}
+
+.register-form {
+  @apply space-y-4;
+}
+
+.register-field-label {
+  @apply mb-2 block text-sm font-semibold text-slate-700;
+}
+
+.register-input-wrapper {
+  @apply relative;
+}
+
+.register-input {
+  @apply w-full rounded-xl border border-slate-200
+    bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none
+    transition placeholder:text-slate-400 hover:border-violet-300
+    focus:border-violet-500 focus:bg-white focus:ring-4
+    focus:ring-violet-100;
+}
+
+.register-password-input {
+  @apply pr-20;
+}
+
+.register-date-input {
+  @apply min-w-0 px-3 text-slate-700;
+}
+
+.register-select {
+  @apply px-3 text-slate-700;
+}
+
+.register-password-toggle {
+  @apply absolute inset-y-0 right-3 my-auto rounded-md px-2
+    text-xs font-bold text-violet-700 hover:bg-violet-50
+    focus:outline-none focus:ring-2 focus:ring-violet-400;
+}
+
+.register-password-hint {
+  @apply mt-2 text-xs leading-5 text-slate-500;
+}
+
+.register-details-grid {
+  @apply grid grid-cols-1 gap-4 sm:grid-cols-2;
+}
+
+.register-error {
+  @apply rounded-xl border border-red-200 bg-red-50
+    px-4 py-3 text-sm leading-6 text-red-700;
+}
+
+.register-success {
+  @apply rounded-xl border border-emerald-200 bg-emerald-50
+    px-4 py-3 text-sm leading-6 text-emerald-800;
+}
+
+.register-submit {
+  @apply flex w-full items-center justify-center gap-2
+    rounded-xl bg-gradient-to-r from-violet-700 to-fuchsia-600
+    px-5 py-4 text-sm font-bold text-white shadow-lg
+    shadow-violet-200 transition hover:-translate-y-0.5
+    hover:from-violet-800 hover:to-fuchsia-700 hover:shadow-xl
+    focus:outline-none focus:ring-4 focus:ring-violet-200
+    disabled:cursor-not-allowed disabled:opacity-60
+    disabled:hover:translate-y-0;
+}
+
+.register-submit-arrow {
+  @apply transition-transform group-hover:translate-x-1;
+}
+
+.register-divider {
+  @apply my-7 flex items-center gap-4;
+}
+
+.register-divider-line {
+  @apply h-px flex-1 bg-slate-200;
+}
+
+.register-divider-text {
+  @apply text-xs font-medium text-slate-400;
+}
+
+.register-signin {
+  @apply text-center text-sm text-slate-500;
+}
+
+.register-signin-link {
+  @apply font-bold text-violet-700 underline-offset-4
+    hover:text-fuchsia-700 hover:underline;
+}
+
+.register-footer {
+  @apply mt-5 text-center text-xs leading-5 text-slate-400;
+}
+
+@media (max-width: 639px) {
+  .register-brand-footer {
+    display: none;
+  }
+}
