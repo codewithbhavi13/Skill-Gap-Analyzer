@@ -2,8 +2,7 @@
 import type { Request, Response, NextFunction } from "express";
 import { createJobDescriptionSchema } from "../schemas/jobDescription.schema.js";
 import { createJobDescription, getAllJobDescriptions,extractSkillsFromJobDescription} from "../services/jobDescription.service.js";
-
-
+import { extractTextFromPdf } from "../services/pdfExtraction.service.js";
 
 export const createJobDescriptionController = async (
   req: Request,
@@ -36,6 +35,56 @@ export const createJobDescriptionController = async (
     next(error);
   }
 };
+
+export const uploadPdfJobDescriptionController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  try {
+    if (!req.file) {
+      res.status(400).json({
+        success: false,
+        message: "Please upload a PDF file.",
+      });
+      return;
+    }
+
+    const description = await extractTextFromPdf(req.file.buffer);
+
+    const validationResult = createJobDescriptionSchema.safeParse({
+      ...req.body,
+      description,
+      inputType: "pdf",
+      originalFileName: req.file.originalname,
+    });
+
+    if (!validationResult.success) {
+      res.status(400).json({
+        success: false,
+        message: "Invalid job description data.",
+        errors: validationResult.error.issues.map((issue) => ({
+          field: issue.path.join("."),
+          message: issue.message,
+        })),
+      });
+      return;
+    }
+
+    const jobDescription = await createJobDescription(
+      validationResult.data
+    );
+
+    res.status(201).json({
+      success: true,
+      message: "PDF job description uploaded successfully.",
+      data: jobDescription,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const getAllJobDescriptionsController = async (
   _req: Request,
   res: Response,
