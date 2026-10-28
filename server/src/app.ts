@@ -12,6 +12,8 @@ import cookieParser from "cookie-parser";
 import roleManagementRoutes from "./routes/roleManagement.routes.js";
 import jobDescriptionRoutes from "./routes/jobDescription.routes.js";
 
+import learnerRoutes from "./routes/learner.routes.js";
+
 const app = express();
 
 app.use(
@@ -32,6 +34,8 @@ app.use("/api/users", userRoutes);
 
 app.use("/api/roles", roleManagementRoutes);
 app.use("/api/job-descriptions", jobDescriptionRoutes);
+
+app.use("/api/learners", learnerRoutes);
 
 app.use(notFound);
 
