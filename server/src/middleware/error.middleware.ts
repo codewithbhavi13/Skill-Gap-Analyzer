@@ -1,4 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
+import multer from "multer";
 import ApiError from "../errors/ApiError.js";
 
 const errorHandler = (
@@ -9,14 +10,14 @@ const errorHandler = (
 ): void => {
   console.error(err);
 
+  // Handle application-specific API errors.
   if (err instanceof ApiError) {
-    return res.status(err.statusCode).json({
+    res.status(err.statusCode).json({
       success: false,
       message: err.message,
-     });
+    });
+    return;
   }
-  return res.status(500).json({
-
 
   // Handle file upload errors from Multer.
   if (err instanceof multer.MulterError) {
@@ -47,7 +48,7 @@ const errorHandler = (
     return;
   }
 
-  // Keep a generic response for unexpected errors.
+  // Handle unexpected errors.
   res.status(500).json({
     success: false,
     message: "Internal server error",
