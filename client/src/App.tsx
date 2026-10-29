@@ -8,6 +8,10 @@ import LoginPage from "./pages/Login/LoginPage";
 import RegisterPage from "./pages/Register/RegisterPage";
 import DashboardPage from "./pages/Dashboard/DashboardPage";
 import NotFoundPage from "./pages/NotFound/NotFoundPage";
+import LearnerProfilePage from "./pages/LearnerProfile/LearnerProfilePage";
+import SkillAssessmentPage from "./pages/SkillAssessment/SkillAssessmentPage";
+import RoleManagementPage from "./pages/RoleManagement/RoleManagementPage";
+import JobDescriptionPage from "./pages/JobDescription/JobDescriptionPage";
 
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -23,7 +27,23 @@ function App() {
       <Route element={<ProtectedRoute />}>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<DashboardPage />} />
-        </Route>
+          <Route
+            path="/learner-profile"
+            element={<LearnerProfilePage />}
+          />
+          <Route
+            path="/skill-assessment"
+            element={<SkillAssessmentPage />}
+          />
+          <Route
+            path="/role-management"
+            element={<RoleManagementPage />}
+          />
+          <Route
+            path="/job-descriptions"
+            element={<JobDescriptionPage />}
+          />
+        </Route>    
       </Route>
 
       <Route path="*" element={<NotFoundPage />} />
