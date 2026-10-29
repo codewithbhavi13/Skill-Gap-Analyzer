@@ -1,5 +1,5 @@
-import { apiRequest } from "../../services/api";
 
+import { apiRequest } from "../../services/api";
 import type {
   ApiResponse,
   JobDescription,
@@ -15,36 +15,65 @@ export interface CreateJobDescriptionInput {
   sourceUrl?: string;
 }
 
-// Fetch all saved job descriptions.
+export interface UploadPdfJobDescriptionInput {
+  title: string;
+  company?: string;
+  targetRole: string;
+  file: File;
+}
+
 export const getAllJobDescriptions = async (): Promise<JobDescription[]> => {
   const response = await apiRequest<ApiResponse<JobDescription[]>>(
-    "/job-descriptions"
+    "/job-descriptions",
   );
 
   return response.data;
 };
 
-// Create a job description from text.
 export const createJobDescription = async (
-  input: CreateJobDescriptionInput
+  input: CreateJobDescriptionInput,
 ): Promise<JobDescription> => {
   const response = await apiRequest<ApiResponse<JobDescription>>(
     "/job-descriptions",
     {
       method: "POST",
       body: JSON.stringify(input),
-    }
+    },
   );
 
   return response.data;
 };
 
-// Retrieve skills extracted from a saved job description.
+export const uploadPdfJobDescription = async (
+  input: UploadPdfJobDescriptionInput,
+): Promise<JobDescription> => {
+  const formData = new FormData();
+
+  formData.append("file", input.file);
+  formData.append("title", input.title);
+  formData.append("targetRole", input.targetRole);
+  formData.append("inputType", "pdf");
+
+  if (input.company?.trim()) {
+    formData.append("company", input.company.trim());
+  }
+
+  const response = await apiRequest<ApiResponse<JobDescription>>(
+    "/job-descriptions/upload-pdf",
+    {
+      method: "POST",
+      body: formData,
+    },
+  );
+
+  return response.data;
+};
+
 export const extractSkillsFromJobDescription = async (
-  id: string
+  id: string,
 ): Promise<ExtractedSkillsResult> => {
   const response = await apiRequest<ApiResponse<ExtractedSkillsResult>>(
-    `/job-descriptions/${encodeURIComponent(id)}/extracted-skills`
+    `/job-descriptions/${encodeURIComponent(id)}/extracted-skills`,
   );
 
   return response.data;
